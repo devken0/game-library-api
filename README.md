@@ -6,8 +6,9 @@ A back-end implementation of a RESTful API for a Game Library System. Built usin
 
 - [Node.js](https://nodejs.org/en/download)
 - [MongoDB](https://www.mongodb.com/docs/manual/installation/)
+- [Postman VS Code extension](https://marketplace.visualstudio.com/items?itemName=Postman.postman-for-vscode)
 
-If you are using Windows, just follow the official docs to set it up on your system.
+If you are using Windows, just follow the official docs for each of these to set them up on your system.
 
 If you are using Ubuntu, here are the commands you can follow to prepare your system:
 
