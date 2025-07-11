@@ -9,7 +9,7 @@ A back-end implementation of a RESTful API for a Game Library System. Built usin
 
 If you are using Windows, just follow the official docs to set it up on your system.
 
-If you are using Ubuntu, here are the commands you can follow:
+If you are using Ubuntu, here are the commands you can follow to prepare your system:
 
 ```sh
 # update system repositories and packages
@@ -52,7 +52,7 @@ sudo systemctl enable mongod --now
 Run these commands in the terminal to install third party packages, dependencies, and tools that was used.
 
 ```sh
-npm in 
+npm in
 ```
 - 
 - Third party packages used (e.g., bcrypt, jsonwebtoken, express-validator, mongoose, cors)
