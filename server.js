@@ -19,6 +19,13 @@ app.get('/', (req, res) => {
   res.send('API is working'); 
 });
 
+// User register and login routes
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
+
+// Game library routes
+
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 })
