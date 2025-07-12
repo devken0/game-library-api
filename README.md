@@ -55,8 +55,6 @@ Run these commands in the terminal to install third party packages, dependencies
 ```sh
 npm in
 ```
-- 
-- Third party packages used (e.g., bcrypt, jsonwebtoken, express-validator, mongoose, cors)
 
 ## Usage
 
@@ -64,7 +62,21 @@ npm in
 
 ### Postman collection
 
-### Example requests for API testing
+Click [here](https://go.postman.co/workspace/8594a39f-fee3-4124-88a0-a42a7937d389/collection/46686005-aad24d06-b687-4d05-9b43-bf795ffcc988) to access the collection.
+
+### Example requests for API testing (cURL)
+
+**Register**: 
+
+```bash
+curl --location 'http://localhost:5000/api/auth/register' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username":"testuser",
+    "email":"testuser@example.com",
+    "password":"apiTest321"
+}'
+```
 
 ## Features
 
