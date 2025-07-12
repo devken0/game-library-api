@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Creates the document model for games
 const gameSchema = new mongoose.Schema({
   title: { type: String, required: true },
   genre: { type: String, required: true },
