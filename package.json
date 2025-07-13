@@ -4,7 +4,7 @@
   "description": "A back-end implementation of a RESTful API for a Game Library System. Built using Node.js, Express.js, and MongoDB.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
@@ -30,6 +30,8 @@
     "mongoose": "^8.16.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "jest": "^30.0.4",
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.3"
   }
 }
