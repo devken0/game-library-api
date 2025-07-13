@@ -8,6 +8,6 @@ router.post('/', auth, validator, controller.createGame);
 router.get('/', controller.getAllGames);
 router.put('/:id', auth, validator, controller.updateGame);
 router.delete('/:id', auth, controller.deleteGame);
-router.get('/search', controller.searchGames);
+router.get('/search', controller.searchGame);
 
 module.exports = router;
