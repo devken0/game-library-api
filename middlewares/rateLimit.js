@@ -1,3 +1,4 @@
+// Sends a 429 error if limit is reached within set timeframe
 const rateLimit = require('express-rate-limit');
 
 const limiter = rateLimit({
