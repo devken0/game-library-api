@@ -14,6 +14,14 @@ mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
+// Rate limiting
+const limiter = require('./middlewares/rateLimit');
+app.use(limiter);
+
+// Simple logger for API calls in the console/terminal
+const logger = require('./middlewares/logger');
+app.use(logger);
+
 // Basic route
 app.get('/', (req, res) => {
   res.send('API is working'); 
@@ -26,14 +34,6 @@ app.use('/api/auth', authRoutes);
 // Game library routes
 const gameRoutes = require('./routes/gameRoutes');
 app.use('/api/game', gameRoutes);
-
-// Simple logger for API calls in the console/terminal
-const logger = require('./middlewares/logger');
-app.use(logger);
-
-// Rate limiting
-const rateLimiter = require('./middlewares/rateLimit');
-app.use(rateLimiter);
 
 // Error handler
 const errorHandler = require('./middlewares/errorHandler');
