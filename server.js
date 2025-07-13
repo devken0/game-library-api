@@ -33,7 +33,7 @@ app.use('/api/auth', authRoutes);
 
 // Game library routes
 const gameRoutes = require('./routes/gameRoutes');
-app.use('/api/game', gameRoutes);
+app.use('/api/games', gameRoutes);
 
 // Error handler
 const errorHandler = require('./middlewares/errorHandler');
