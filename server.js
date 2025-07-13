@@ -31,6 +31,10 @@ app.use('/api/game', gameRoutes);
 const errorHandler = require('./middlewares/errorHandler');
 app.use(errorHandler);
 
+// Simple logger for API calls in the console/terminal
+const logger = require('./middlewares/logger');
+app.use(logger);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 })
