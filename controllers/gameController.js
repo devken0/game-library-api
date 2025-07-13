@@ -60,8 +60,8 @@ exports.searchGame = async (req, res, next) => {
 
     // enables case-insensitive search query 
     if (title) query.title = { $regex: title, $options: 'i' }; 
-    if (genre) query.genre = genre;
-    if (platform) query.platform = platform;
+    if (genre) query.genre = { $regex: genre, $options: 'i' };
+    if (platform) query.platform = { $regex: platform, $options: 'i' };
 
     const games = await Game.find(query);
     return sendResponse(res, 200, games, 'Search game successful');
