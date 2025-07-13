@@ -1,0 +1,327 @@
+{
+	"info": {
+		"_postman_id": "aad24d06-b687-4d05-9b43-bf795ffcc988",
+		"name": "Game Library API",
+		"description": "## Game Library API\n\nA collection of tests for a game library RESTful API. Please go to \"Variables\" tab and set proper values before proceeding.\n\n### Auth\n\n- `POST /api/auth/register`\n- `POST /api/auth/login`\n    \n\n### Games\n\n- `GET /api/games`\n- `GET /api/games/search?title=...&genre=...&platform=...`\n- `POST /api/games` _protected route (bearer token required)_\n- `PUT /api/games/:id` _protected route (bearer token required)_\n- `DELETE /api/games/:id` _protected route (bearer token required)_\n    \n\n### Protected routes\n\nDo the following to access the protected routes:\n\n1. Register and login\n2. Copy the token\n3. Go to Games > Authorization > Select Bearer Token > Paste token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46686005"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\":\"{{basic_username}}\",\r\n    \"email\":\"{{basic_email}}\",\r\n    \"password\":\"{{basic_password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/register",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{basic_email}}\",\r\n    \"password\": \"{{basic_password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/auth/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "### Routes\n\n- `POST /api/auth/register`\n    \n- `POST /api/auth/login`"
+		},
+		{
+			"name": "Games",
+			"item": [
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"Elden Ring\",\n    \"genre\":\"RPG\",\n    \"platform\":\"PC\",\n    \"releaseYear\":\"2022\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/games",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/games",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"games"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/games/search?title=star&genre=&platform=",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								"search"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "star"
+								},
+								{
+									"key": "genre",
+									"value": ""
+								},
+								{
+									"key": "platform",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"description\":\"A dark fantasy epic co-created with George R.R. Martin. Massive open world, brutal Soulslike combat, and deep lore\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/games/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6873dd5bb23ba3a4499e9356"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/games/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"games",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6873dd5bb23ba3a4499e9356"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "### Routes\n\n- `GET /api/games`\n    \n- `GET /api/games/search?title=...&genre=...&platform=...`\n    \n- `POST /api/games` _protected route (bearer token required)_\n    \n- `PUT /api/games/:id` _protected route (bearer token required)_\n    \n- `DELETE /api/games/:id` _protected route (bearer token required)_\n    \n\n### Protected routes\n\nDo the following to access the protected routes:\n\n1. Register and login\n    \n2. Copy the token\n    \n3. Go to the Games > Authorization > Paste token",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{vault:authorization-secret}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		},
+		{
+			"key": "admin_username",
+			"value": "testadmin",
+			"type": "string"
+		},
+		{
+			"key": "admin_email",
+			"value": "testadmin@example.com",
+			"type": "string"
+		},
+		{
+			"key": "admin_password",
+			"value": "apiTest321",
+			"type": "string"
+		},
+		{
+			"key": "basic_username",
+			"value": "testuser",
+			"type": "string"
+		},
+		{
+			"key": "basic_email",
+			"value": "testuser@example.com",
+			"type": "string"
+		},
+		{
+			"key": "basic_password",
+			"value": "apiTest321",
+			"type": "string"
+		}
+	]
+}
