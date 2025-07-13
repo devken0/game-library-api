@@ -27,6 +27,10 @@ app.use('/api/auth', authRoutes);
 const gameRoutes = require('./routes/gameRoutes');
 app.use('/api/game', gameRoutes);
 
+// Error handler plugged in for all routes 
+const errorHandler = require('./middlewares/errorHandler');
+app.use(errorHandler);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 })
