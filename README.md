@@ -127,5 +127,6 @@ npm test
 
 ## Postman Collection
 
-You may download and use the included postman.json to use the postman collection.
+You may download and use the included postman_collection.json or open the link below.
 
+https://www.postman.com/devken0/web-back-end-developer-exam/collection/hfqdlv8/game-library-api?action=share&creator=46686005
