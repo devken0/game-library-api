@@ -39,6 +39,11 @@ app.use('/api/game', gameRoutes);
 const errorHandler = require('./middlewares/errorHandler');
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-})
+module.exports = app; // for testing purpsoses
+
+// makes sure that server was ran directly before starting
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  })
+}
