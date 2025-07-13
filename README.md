@@ -1,10 +1,27 @@
-# Game Library API with Authentication
+# Game Library API
 
 A back-end implementation of a RESTful API for a Game Library System. Built using Node.js, Express.js, and MongoDB. 
 
 ## Features
 
-<!-- Add screenshots that are accessible through github links -->
+- User registration and login with `bcrypt` password encryption
+- JWT token-based authentication for login sessions 
+- Full CRUD for games (add, view, edit, delete, and search)
+- Input validation with `express-validation`
+- Protected routes with JWT token verification
+- Error handling middleware
+- Rate limiting + logger middleware
+- Basic unit testing with Jest + Supertest
+
+## Technologies
+
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- JWT + bcrypt
+- express-validator
+- express-rate-limit
+- Jest + Supertest
 
 ## Prerequisites
 
@@ -14,7 +31,7 @@ A back-end implementation of a RESTful API for a Game Library System. Built usin
 
 If you are using Windows, just follow the official docs for each of these to set them up on your system.
 
-If you are using Ubuntu, here are the commands you can follow to prepare your system:
+For Ubuntu, here are the commands you can follow to prepare your system:
 
 ```sh
 # update system repositories and packages
@@ -52,32 +69,63 @@ sudo systemctl daemon-reload
 sudo systemctl enable mongod --now
 ```
 
-## Setup 
+## Installation 
 
 Run these commands in the terminal to install third party packages, dependencies, and tools that were used.
 
-```sh
-npm install express-validator express-rate-limit
+```bash
+git clone https://github.com/devken0/game-library-api.git
+cd game-library-api
+npm i 
 ```
 
-## Usage
-
-### JWT Secrets
-
-### Postman collection
-
-Click [here](https://go.postman.co/workspace/8594a39f-fee3-4124-88a0-a42a7937d389/collection/46686005-aad24d06-b687-4d05-9b43-bf795ffcc988) to access the collection.
-
-### Example requests for API testing (cURL)
-
-**Register**: 
+Run the server with:
 
 ```bash
-curl --location 'http://localhost:5000/api/auth/register' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "username":"testuser",
-    "email":"testuser@example.com",
-    "password":"apiTest321"
-}'
+npm start 
 ```
+
+> NOTE: Make sure to create the `.env`  file from the template `.env.example` and set the correct environment variables.
+>
+> ```bash
+> cp .env.example .env 
+> ```
+> 
+
+## Environment Variables
+
+| Key           | Description               |
+| ------------- | ------------------------- |
+| `PORT`        | Port to run the server    |
+| `MONGODB_URI` | MongoDB connection string |
+| `JWT_SECRET`  | Secret for signing tokens |
+
+You can use [JWT Secret Key Generator](https://jwtsecrets.com/#generator) to generate a unique secret.
+
+## Running tests 
+
+Jest + Supertest
+
+```bash
+npm test
+```
+
+## API Routes
+
+### Auth
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+
+### Game
+
+- `GET /api/games`
+- `GET /api/games/search?title=...&genre=...&platform=...`
+- `POST /api/games` *auth required*
+- `PUT /api/games/:id` *auth required*
+- `DELETE /api/games/:id` *auth required*
+
+## Postman Collection
+
+You may download and use the included postman.json to access the postman collection.
+
