@@ -1,4 +1,4 @@
-const verifyToken = require('../utils/token');
+const { verifyToken } = require('../utils/token');
 const createError = require('../utils/createError');
 
 module.exports = function (req, res, next) {
