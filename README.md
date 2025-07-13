@@ -117,7 +117,7 @@ npm test
 - `POST /api/auth/register`
 - `POST /api/auth/login`
 
-### Game
+### Games
 
 - `GET /api/games`
 - `GET /api/games/search?title=...&genre=...&platform=...`
