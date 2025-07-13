@@ -53,7 +53,7 @@ sudo systemctl enable mongod --now
 Run these commands in the terminal to install third party packages, dependencies, and tools that was used.
 
 ```sh
-npm in
+npm install express-validator
 ```
 
 ## Usage
