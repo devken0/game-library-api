@@ -1,6 +1,6 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const generateToken = require('../utils/token');
 
 // Register
 exports.register = async (req, res) => {
@@ -34,11 +34,7 @@ exports.login = async (req, res) => {
     if (!isMatch) return res.status(400).json({ message: 'Invalid email or password' });
 
     // If everything above passes, create token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: '3d' }
-    );
+    const token = generateToken({ userId: user._id });
 
     res.status(200).json({ token });
 
