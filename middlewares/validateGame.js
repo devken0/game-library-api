@@ -1,4 +1,5 @@
 const { body, validationResult } = require('express-validator');
+const createError = require('../utils/createError');
 
 const validateGame = [
   body('title').notEmpty().withMessage('Game title is required'),
@@ -7,7 +8,7 @@ const validateGame = [
   body('releaseYear').isDate().withMessage('Release year must be a number'),
   (req, res, next) => {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+    if (!errors.isEmpty()) return next(createError(400, errors.array().map(err => err.msg).join(', ')));
     next();
   }
 ];

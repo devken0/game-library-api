@@ -1,52 +1,59 @@
 const Game = require(`../models/Game`);
+const createError = require('../utils/createError');
+const sendResponse = require('../utils/sendResponse');
 
 // Create a game
-exports.createGame = async (req, res) => {
+exports.createGame = async (req, res, next) => {
   try {
     const game = new Game(req.body);
     await game.save();
     // 201 status code means the request was successful and a new resource was created
-    res.status(201).json(game);
-
+    return sendResponse(res, 201, game, 'Game added successfully');
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    if (err.name === 'ValidationError') {
+      return next(createError(400, err.message));
+    }
+    return next(err);
   }
 };
 
 // Get all games
-exports.getAllGames = async (req, res) => {
+exports.getAllGames = async (req, res, next) => {
   try {
     const games = await Game.find();
-    res.status(200).json(games);
+    return sendResponse(res, 200, games, '');
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return next(err);
   }
 };
 
 // Update a game
-exports.updateGame = async (req, res) => {
+exports.updateGame = async (req, res, next) => {
   try {
     const game = await Game.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!game) return res.status(404).json({ message: 'Game not found' });
-    res.status(200).json(game);
+    if (!game) return next(createError(404, 'Game not found'));
+    return sendResponse(res, 200, game, 'Game updated successfully')
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    if (err.name === 'ValidationError') {
+      return next(createError(400, err.message));
+    }
+    return next(err);
   }
 };
 
 // Delete a game
-exports.deleteGame = async (req, res) => {
+exports.deleteGame = async (req, res, next) => {
   try {
     const game = await Game.findByIdAndDelete(req.params.id);
-    if (!game) return res.status(404).json({ message: 'Game not found' });
-    res.status(200).json({ message: 'Game deleted successfully' });
+    if (!game) return next(createError(404, 'Game not found'));
+    return sendResponse(res, 200, {}, 'Game deleted successfully');
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return next(err);
   }
 };
 
 // Search/filter function
-exports.searchGame = async (req, res) => {
+exports.searchGame = async (req, res, next) => {
   try {
     const { title, genre, platform } = req.query;
     const query = {}; // query object
@@ -57,9 +64,9 @@ exports.searchGame = async (req, res) => {
     if (platform) query.platform = platform;
 
     const games = await Game.find(query);
-    res.status(200).json(games);
+    return sendResponse(res, 200, games, 'Search game successful');
 
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return next(err);
   }
 }
