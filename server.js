@@ -27,10 +27,6 @@ app.use('/api/auth', authRoutes);
 const gameRoutes = require('./routes/gameRoutes');
 app.use('/api/game', gameRoutes);
 
-// Error handler plugged in for all routes 
-const errorHandler = require('./middlewares/errorHandler');
-app.use(errorHandler);
-
 // Simple logger for API calls in the console/terminal
 const logger = require('./middlewares/logger');
 app.use(logger);
@@ -38,6 +34,10 @@ app.use(logger);
 // Rate limiting
 const rateLimiter = require('./middlewares/rateLimit');
 app.use(rateLimiter);
+
+// Error handler
+const errorHandler = require('./middlewares/errorHandler');
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
