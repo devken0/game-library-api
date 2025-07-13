@@ -2,6 +2,10 @@
 
 A back-end implementation of a RESTful API for a Game Library System. Built using Node.js, Express.js, and MongoDB. 
 
+## Features
+
+<!-- Add screenshots that are accessible through github links -->
+
 ## Prerequisites
 
 - [Node.js](https://nodejs.org/en/download)
@@ -50,7 +54,7 @@ sudo systemctl enable mongod --now
 
 ## Setup 
 
-Run these commands in the terminal to install third party packages, dependencies, and tools that was used.
+Run these commands in the terminal to install third party packages, dependencies, and tools that were used.
 
 ```sh
 npm install express-validator express-rate-limit
@@ -77,7 +81,3 @@ curl --location 'http://localhost:5000/api/auth/register' \
     "password":"apiTest321"
 }'
 ```
-
-## Features
-
-<!-- Add screenshots that are accessible through github links -->
