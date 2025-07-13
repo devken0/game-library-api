@@ -35,6 +35,10 @@ app.use(errorHandler);
 const logger = require('./middlewares/logger');
 app.use(logger);
 
+// Rate limiting
+const rateLimiter = require('./middlewares/rateLimit');
+app.use(rateLimiter);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 })
