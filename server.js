@@ -24,7 +24,8 @@ const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
 // Game library routes
-
+const gameRoutes = require('./routes/gameRoutes');
+app.use('/api/game', gameRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
