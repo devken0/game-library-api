@@ -127,5 +127,5 @@ npm test
 
 ## Postman Collection
 
-You may download and use the included postman.json to access the postman collection.
+You may download and use the included postman.json to use the postman collection.
 
